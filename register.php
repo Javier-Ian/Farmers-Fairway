@@ -17,6 +17,11 @@ if(isset($_POST['submit'])){
    $user_type = $_POST['user_type'];
    $user_type = filter_var($user_type, FILTER_SANITIZE_STRING);
 
+   $image = $_FILES['image']['name'];
+   $image_size = $_FILES['image']['size'];
+   $image_tmp_name = $_FILES['image']['tmp_name'];
+   $image_folder = 'uploaded_img/'.$image;
+
    $select = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
    $select->execute([$email]);
 
@@ -25,9 +30,12 @@ if(isset($_POST['submit'])){
    }else{
       if($pass != $cpass){
          $message[] = 'confirm password not matched!';
+      }elseif($image_size > 2000000){
+         $message[] = 'image size is too large!';
       }else{
-         $insert = $conn->prepare("INSERT INTO `users`(name, email, password, user_type) VALUES(?,?,?,?)");
-         $insert->execute([$name, $email, $pass, $user_type]);
+         move_uploaded_file($image_tmp_name, $image_folder);
+         $insert = $conn->prepare("INSERT INTO `users`(name, email, password, user_type, image) VALUES(?,?,?,?,?)");
+         $insert->execute([$name, $email, $pass, $user_type, $image]);
 
          if($insert){
             $message[] = 'registered successfully!';
@@ -73,22 +81,49 @@ if(isset($message)){
 ?>
    
 <section class="form-container">
-
-   <form action="" method="POST">
+   <form action="" method="POST" enctype="multipart/form-data">
       <h3>register now</h3>
-      <input type="text" name="name" class="box" placeholder="enter your name" required>
-      <input type="email" name="email" class="box" placeholder="enter your email" required>
-      <input type="password" name="pass" class="box" placeholder="enter your password" required>
-      <input type="password" name="cpass" class="box" placeholder="confirm your password" required>
-      <select name="user_type" class="box" required>
-         <option value="">Select your role</option>
-         <option value="user">Customer</option>
-         <option value="admin">Buyer</option>
-      </select>
-      <input type="submit" value="register now" class="btn" name="submit">
-      <p>already have an account? <a href="login.php">login now</a></p>
+      
+      <div class="form-grid">
+         <!-- Row 1: Name and Email -->
+         <div class="input-group">
+            <input type="text" name="name" class="box" placeholder="enter your name" required>
+         </div>
+         <div class="input-group">
+            <input type="email" name="email" class="box" placeholder="enter your email" required>
+         </div>
+         
+         <!-- Row 2: Password and Confirm Password -->
+         <div class="input-group">
+            <input type="password" name="pass" class="box" placeholder="enter your password" required>
+         </div>
+         <div class="input-group">
+            <input type="password" name="cpass" class="box" placeholder="confirm your password" required>
+         </div>
+         
+         <!-- Row 3: Role Selection and File Upload -->
+         <div class="input-group">
+            <select name="user_type" class="box" required>
+               <option value="">select your role</option>
+               <option value="user">Customer</option>
+               <option value="admin">Buyer</option>
+            </select>
+         </div>
+         <div class="input-group">
+            <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png" required>
+         </div>
+         
+         <!-- Register Button -->
+         <div class="input-group full-width">
+            <input type="submit" value="register now" class="btn" name="submit">
+         </div>
+         
+         <!-- Login Link -->
+         <div class="input-group full-width">
+            <p>already have an account? <a href="login.php">login now</a></p>
+         </div>
+      </div>
    </form>
-
 </section>
 
 </body>
