@@ -25,7 +25,15 @@ if(isset($_POST['add_product'])){
    $image = filter_var($image, FILTER_SANITIZE_STRING);
    $image_size = $_FILES['image']['size'];
    $image_tmp_name = $_FILES['image']['tmp_name'];
-   $image_folder = 'uploaded_img/'.$image;
+   
+   // Create directory with absolute path
+   $upload_dir = __DIR__ . '/uploaded_img';
+   if (!is_dir($upload_dir)) {
+       mkdir($upload_dir, 0777, true);
+   }
+   
+   // Use absolute path for image folder
+   $image_folder = $upload_dir . '/' . $image;
 
    $select_products = $conn->prepare("SELECT * FROM `products` WHERE name = ?");
    $select_products->execute([$name]);
@@ -33,20 +41,17 @@ if(isset($_POST['add_product'])){
    if($select_products->rowCount() > 0){
       $message[] = 'product name already exist!';
    }else{
-
-      $insert_products = $conn->prepare("INSERT INTO `products`(name, category, details, price, image) VALUES(?,?,?,?,?)");
-      $insert_products->execute([$name, $category, $details, $price, $image]);
-
-      if($insert_products){
-         if($image_size > 2000000){
-            $message[] = 'image size is too large!';
-         }else{
-            move_uploaded_file($image_tmp_name, $image_folder);
+      if($image_size > 2000000){
+         $message[] = 'image size is too large!';
+      }else{
+         if(move_uploaded_file($image_tmp_name, $image_folder)){
+            $insert_products = $conn->prepare("INSERT INTO `products`(name, category, details, price, image) VALUES(?,?,?,?,?)");
+            $insert_products->execute([$name, $category, $details, $price, $image]);
             $message[] = 'new product added!';
+         } else {
+            $message[] = 'Failed to upload image. Please check directory permissions.';
          }
-
       }
-
    }
 
 };
