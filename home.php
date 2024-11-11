@@ -100,9 +100,9 @@ if(isset($_POST['add_to_cart'])){
    <section class="home">
 
       <div class="content">
-         <span>don't panic, go organice</span>
-         <h3>Reach For A Healthier You With Organic Foods</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto natus culpa officia quasi, accusantium explicabo?</p>
+         <span>Welcome to Farmers Fairway</span>
+         <h3> Farm to Your Table</h3>
+         <p>Experience the finest selection of locally-sourced, farm-fresh produce and products, bringing the farmers market directly to you.</p>
          <a href="about.php" class="btn">about us</a>
       </div>
 
