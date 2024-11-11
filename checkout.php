@@ -88,14 +88,14 @@ if(isset($_POST['order'])){
             $cart_total_price = ($fetch_cart_items['price'] * $fetch_cart_items['quantity']);
             $cart_grand_total += $cart_total_price;
    ?>
-   <p> <?= $fetch_cart_items['name']; ?> <span>(<?= '$'.$fetch_cart_items['price'].'/- x '. $fetch_cart_items['quantity']; ?>)</span> </p>
+   <p> <?= $fetch_cart_items['name']; ?> <span>(<?= '₱'.$fetch_cart_items['price'].' x '. $fetch_cart_items['quantity']; ?>)</span> </p>
    <?php
     }
    }else{
       echo '<p class="empty">your cart is empty!</p>';
    }
    ?>
-   <div class="grand-total">grand total : <span>$<?= $cart_grand_total; ?>/-</span></div>
+   <div class="grand-total">grand total : <span>₱<?= $cart_grand_total; ?></span></div>
 </section>
 
 <section class="checkout-orders">
@@ -121,30 +121,30 @@ if(isset($_POST['order'])){
             <span>payment method :</span>
             <select name="method" class="box" required>
                <option value="cash on delivery">cash on delivery</option>
-               <option value="credit card">credit card</option>
+               <!-- <option value="credit card">credit card</option>
                <option value="paytm">paytm</option>
-               <option value="paypal">paypal</option>
+               <option value="paypal">paypal</option> -->
             </select>
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="text" name="flat" placeholder="e.g. flat number" class="box" required>
+            <span>Zone address :</span>
+            <input type="text" name="flat" placeholder="e.g. Zone 1" class="box" required>
          </div>
          <div class="inputBox">
-            <span>address line 02 :</span>
-            <input type="text" name="street" placeholder="e.g. street name" class="box" required>
+            <span>Barangay address :</span>
+            <input type="text" name="street" placeholder="e.g. Barangay 1" class="box" required>
          </div>
          <div class="inputBox">
-            <span>city :</span>
-            <input type="text" name="city" placeholder="e.g. mumbai" class="box" required>
+            <span>City :</span>
+            <input type="text" name="city" placeholder="e.g. Malaybalay" class="box" required>
          </div>
          <div class="inputBox">
-            <span>state :</span>
-            <input type="text" name="state" placeholder="e.g. maharashtra" class="box" required>
+            <span>Province :</span>
+            <input type="text" name="state" placeholder="e.g. Bukidnon" class="box" required>
          </div>
          <div class="inputBox">
-            <span>country :</span>
-            <input type="text" name="country" placeholder="e.g. India" class="box" required>
+            <span>Country :</span>
+            <input type="text" name="country" placeholder="e.g. Philippines" class="box" required>
          </div>
          <div class="inputBox">
             <span>pin code :</span>

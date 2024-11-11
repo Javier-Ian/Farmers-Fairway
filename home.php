@@ -127,21 +127,21 @@ if(isset($_POST['add_to_cart'])){
          <img src="project images/sack_of_corn.png" alt="">
          <h3>Corn</h3>
          <p>Sweet, golden corn picked at the peak ripeness from our trusted partner farms, delivering the freshest, finest flavor to your meals every time and every day.</p>
-         <a href="category.php?category=meat" class="btn">corn</a>
+         <a href="category.php?category=corn" class="btn">corn</a>
       </div>
 
       <div class="box">
          <img src="images/cat-3.png" alt="">
          <h3>vegetables</h3>
          <p>Garden-fresh vegetables harvested daily from the local farms,and  ensuring top quality, rich nutrients, and a taste you’ll love.</p>
-         <a href="category.php?category=vegitables" class="btn">vegetables</a>
+         <a href="category.php?category=vegetables" class="btn">vegetables</a>
       </div>
 
       <div class="box">
          <img src="project images/sack_of_rice.png" alt="">
          <h3>Rice</h3>
          <p>Premium-quality rice sourced from local paddies, carefully selected to deliver authentic, farm-fresh grains to your kitchen.</p>
-         <a href="category.php?category=fish" class="btn">Rice</a>
+         <a href="category.php?category=rice" class="btn">Rice</a>
       </div>
 
    </div>
@@ -156,21 +156,21 @@ if(isset($_POST['add_to_cart'])){
 
    <?php
       $select_products = $conn->prepare("
-         SELECT products.*, users.name AS admin_name 
-         FROM products 
-         JOIN users ON products.admin_id = users.id 
+         SELECT products.*, users.name AS admin_name
+         FROM products
+         JOIN users ON products.admin_id = users.id
          LIMIT 6
       ");
       $select_products->execute();
       if($select_products->rowCount() > 0){
-         while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
+         while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){
    ?>
    <form action="" class="box" method="POST">
-      <div class="price">₱<span><?= $fetch_products['price']; ?></span>/-</div>
+      <div class="price">₱<span><?= $fetch_products['price']; ?></span></div>
       <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
       <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
       <div class="name"><?= $fetch_products['name']; ?></div>
-      <div class="admin-name">Posted by: <?= $fetch_products['admin_name']; ?></div>
+      <div class="admin-name">Seller Name: <?= $fetch_products['admin_name']; ?></div>
       <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
       <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
       <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">

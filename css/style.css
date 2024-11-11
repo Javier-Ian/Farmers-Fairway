@@ -836,3 +836,8 @@
         grid-template-areas: "name" "email" "password" "cpassword" "role" "file" "button" "login";
     }
 }
+
+.admin-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
