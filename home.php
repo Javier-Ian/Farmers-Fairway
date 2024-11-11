@@ -133,7 +133,7 @@ if(isset($_POST['add_to_cart'])){
       <div class="box">
          <img src="images/cat-3.png" alt="">
          <h3>vegetables</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
+         <p>Garden-fresh vegetables harvested daily from local farms, ensuring the highest quality and nutritional value for your family.</p>
          <a href="category.php?category=vegitables" class="btn">vegetables</a>
       </div>
 
