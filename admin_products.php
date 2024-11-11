@@ -105,7 +105,7 @@ if(isset($_GET['delete'])){
          <input type="text" name="name" class="box" required placeholder="enter product name">
          <select name="category" class="box" required>
             <option value="" selected disabled>select category</option>
-               <option value="vegitables">vegitables</option>
+               <option value="vegitables">vegetables</option>
                <option value="fruits">fruits</option>
                <option value="meat">meat</option>
                <option value="fish">fish</option>

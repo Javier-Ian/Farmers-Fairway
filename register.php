@@ -10,10 +10,8 @@ if(isset($_POST['submit'])){
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
-   $pass = md5($_POST['pass']);
-   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
-   $cpass = md5($_POST['cpass']);
-   $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+   $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+   $cpass = $_POST['cpass'];
    $user_type = $_POST['user_type'];
    $user_type = filter_var($user_type, FILTER_SANITIZE_STRING);
 
@@ -28,18 +26,22 @@ if(isset($_POST['submit'])){
    if($select->rowCount() > 0){
       $message[] = 'user email already exists!';
    }else{
-      if($pass != $cpass){
+      if(!password_verify($cpass, $pass)){
          $message[] = 'confirm password not matched!';
       }elseif($image_size > 2000000){
          $message[] = 'image size is too large!';
       }else{
-         move_uploaded_file($image_tmp_name, $image_folder);
-         $insert = $conn->prepare("INSERT INTO `users`(name, email, password, user_type, image) VALUES(?,?,?,?,?)");
-         $insert->execute([$name, $email, $pass, $user_type, $image]);
+         if(move_uploaded_file($image_tmp_name, $image_folder)){
+            $insert = $conn->prepare("INSERT INTO `users`(name, email, password, user_type, image) VALUES(?,?,?,?,?)");
+            $insert->execute([$name, $email, $pass, $user_type, $image]);
 
-         if($insert){
-            $message[] = 'registered successfully!';
-            header('location:login.php');
+            if($insert){
+               $message[] = 'registered successfully!';
+               header('location:login.php');
+               exit;
+            }
+         } else {
+            $message[] = 'Failed to upload image. Please check directory permissions.';
          }
       }
    }
@@ -105,8 +107,8 @@ if(isset($message)){
          <div class="input-group">
             <select name="user_type" class="box" required>
                <option value="">select your role</option>
-               <option value="user">Customer</option>
-               <option value="admin">Buyer</option>
+               <option value="user">Buyer</option>
+               <option value="admin">Seller</option>
             </select>
          </div>
          <div class="input-group">

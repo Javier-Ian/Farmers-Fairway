@@ -8,33 +8,23 @@ $user_id = $_SESSION['user_id'];
 
 if(!isset($user_id)){
    header('location:login.php');
-};
+}
 
-if(isset($_POST['send'])){
+$message = []; // Initialize as an array to store multiple messages
 
+if(isset($_POST['send_message'])){
+
+   $admin_id = $_POST['admin_id'];
+   $admin_id = filter_var($admin_id, FILTER_SANITIZE_NUMBER_INT);
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
-   $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
-   $number = $_POST['number'];
-   $number = filter_var($number, FILTER_SANITIZE_STRING);
-   $msg = $_POST['msg'];
-   $msg = filter_var($msg, FILTER_SANITIZE_STRING);
+   $message_content = $_POST['message'];
+   $message_content = filter_var($message_content, FILTER_SANITIZE_STRING);
 
-   $select_message = $conn->prepare("SELECT * FROM `message` WHERE name = ? AND email = ? AND number = ? AND message = ?");
-   $select_message->execute([$name, $email, $number, $msg]);
+   $insert_message = $conn->prepare("INSERT INTO `message`(user_id, admin_id, name, message) VALUES(?,?,?,?)");
+   $insert_message->execute([$user_id, $admin_id, $name, $message_content]);
 
-   if($select_message->rowCount() > 0){
-      $message[] = 'already sent message!';
-   }else{
-
-      $insert_message = $conn->prepare("INSERT INTO `message`(user_id, name, email, number, message) VALUES(?,?,?,?,?)");
-      $insert_message->execute([$user_id, $name, $email, $number, $msg]);
-
-      $message[] = 'sent message successfully!';
-
-   }
-
+   $message[] = 'Message sent successfully!';
 }
 
 ?>
@@ -45,7 +35,7 @@ if(isset($_POST['send'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>contact</title>
+   <title>Contact Admin</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -60,24 +50,34 @@ if(isset($_POST['send'])){
 
 <section class="contact">
 
-   <h1 class="title">get in touch</h1>
+   <h1 class="title">Contact Admin</h1>
+
+   <?php if(!empty($message)): ?>
+      <div class="message">
+         <?php foreach($message as $msg): ?>
+            <span><?= $msg; ?></span>
+         <?php endforeach; ?>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+   <?php endif; ?>
 
    <form action="" method="POST">
-      <input type="text" name="name" class="box" required placeholder="enter your name">
-      <input type="email" name="email" class="box" required placeholder="enter your email">
-      <input type="number" name="number" min="0" class="box" required placeholder="enter your number">
-      <textarea name="msg" class="box" required placeholder="enter your message" cols="30" rows="10"></textarea>
-      <input type="submit" value="send message" class="btn" name="send">
+      <select name="admin_id" required>
+         <option value="">Select Admin</option>
+         <?php
+            $select_admins = $conn->prepare("SELECT * FROM `users` WHERE user_type = 'admin'");
+            $select_admins->execute();
+            while($fetch_admins = $select_admins->fetch(PDO::FETCH_ASSOC)){
+               echo '<option value="'.$fetch_admins['id'].'">'.$fetch_admins['name'].'</option>';
+            }
+         ?>
+      </select>
+      <input type="text" name="name" placeholder="Enter your name" required class="box">
+      <textarea name="message" class="box" placeholder="Enter your message" required></textarea>
+      <input type="submit" value="Send Message" class="btn" name="send_message">
    </form>
 
 </section>
-
-
-
-
-
-
-
 
 <?php include 'footer.php'; ?>
 
