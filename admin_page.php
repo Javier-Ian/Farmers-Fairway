@@ -51,7 +51,7 @@ if(!isset($admin_id)){
 
       <div class="box">
          <h3>Upload New Product</h3>
-         <a href="upload_product.php" class="btn">upload product</a>
+         <a href="admin_products.php" class="btn">upload product</a>
       </div>
 
    </div>
