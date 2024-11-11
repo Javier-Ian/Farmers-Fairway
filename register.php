@@ -10,8 +10,8 @@ if(isset($_POST['submit'])){
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
-   $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-   $cpass = $_POST['cpass'];
+   $pass = md5($_POST['pass']); // Revert to md5 encryption
+   $cpass = md5($_POST['cpass']); // Revert to md5 encryption
    $user_type = $_POST['user_type'];
    $user_type = filter_var($user_type, FILTER_SANITIZE_STRING);
 
@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
    if($select->rowCount() > 0){
       $message[] = 'user email already exists!';
    }else{
-      if(!password_verify($cpass, $pass)){
+      if($cpass != $pass){
          $message[] = 'confirm password not matched!';
       }elseif($image_size > 2000000){
          $message[] = 'image size is too large!';
