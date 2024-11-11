@@ -10,7 +10,7 @@ if(!isset($user_id)){
    header('location:login.php');
 }
 
-$message = []; // Initialize as an array to store multiple messages
+$messages = []; // Initialize as an array to store multiple messages
 
 if(isset($_POST['send_message'])){
 
@@ -24,7 +24,7 @@ if(isset($_POST['send_message'])){
    $insert_message = $conn->prepare("INSERT INTO `message`(user_id, admin_id, name, message) VALUES(?,?,?,?)");
    $insert_message->execute([$user_id, $admin_id, $name, $message_content]);
 
-   $message[] = 'Message sent successfully!';
+   $messages[] = 'Message sent successfully!';
 }
 
 ?>
@@ -52,9 +52,9 @@ if(isset($_POST['send_message'])){
 
    <h1 class="title">Contact Admin</h1>
 
-   <?php if(!empty($message)): ?>
+   <?php if(!empty($messages)): ?>
       <div class="message">
-         <?php foreach($message as $msg): ?>
+         <?php foreach($messages as $msg): ?>
             <span><?= $msg; ?></span>
          <?php endforeach; ?>
          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
