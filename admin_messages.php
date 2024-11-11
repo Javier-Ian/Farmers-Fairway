@@ -18,7 +18,7 @@ if(!isset($admin_id)){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>seller page</title>
+   <title>Admin Messages</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -31,28 +31,28 @@ if(!isset($admin_id)){
    
 <?php include 'admin_header.php'; ?>
 
-<section class="dashboard">
+<section class="messages">
 
-   <h1 class="title">seller dashboard</h1>
+   <h1 class="title">Messages</h1>
 
    <div class="box-container">
 
-      <div class="box">
       <?php
-         // Removed the WHERE clause since there's no user/admin association in the schema
-         $select_products = $conn->prepare("SELECT * FROM `products`");
-         $select_products->execute();
-         $number_of_products = $select_products->rowCount();
+         $select_messages = $conn->prepare("SELECT * FROM `message` WHERE admin_id = ?");
+         $select_messages->execute([$admin_id]);
+         if($select_messages->rowCount() > 0){
+            while($fetch_message = $select_messages->fetch(PDO::FETCH_ASSOC)){
       ?>
-      <h3><?= $number_of_products; ?></h3>
-      <p>products added</p>
-      <a href="admin_products.php" class="btn">see products</a>
-      </div>
-
       <div class="box">
-         <h3>Upload New Product</h3>
-         <a href="upload_product.php" class="btn">upload product</a>
+         <p> From : <span><?= $fetch_message['name']; ?></span> </p>
+         <p> Message : <span><?= $fetch_message['message']; ?></span> </p>
       </div>
+      <?php
+            }
+         }else{
+            echo '<p class="empty">No messages yet!</p>';
+         }
+      ?>
 
    </div>
 

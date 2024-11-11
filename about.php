@@ -18,7 +18,7 @@ if(!isset($user_id)){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>about</title>
+   <title>About Us</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -37,16 +37,16 @@ if(!isset($user_id)){
 
       <div class="box">
          <img src="images/about-img-1.png" alt="">
-         <h3>why choose us?</h3>
-         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, a quod, quis alias eius dignissimos pariatur laborum dolorem ad ullam iure, consequatur autem animi illo odit! Atque quia minima voluptatibus.</p>
-         <a href="contact.php" class="btn">contact us</a>
+         <h3>Why Choose Us?</h3>
+         <p>We are committed to providing the freshest produce directly from local farmers to your table. Our platform ensures quality and transparency in every transaction.</p>
+         <a href="contact.php" class="btn">Contact Us</a>
       </div>
 
       <div class="box">
          <img src="images/about-img-2.png" alt="">
-         <h3>what we provide?</h3>
-         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, a quod, quis alias eius dignissimos pariatur laborum dolorem ad ullam iure, consequatur autem animi illo odit! Atque quia minima voluptatibus.</p>
-         <a href="shop.php" class="btn">our shop</a>
+         <h3>What We Provide?</h3>
+         <p>We offer a wide range of fresh fruits, vegetables, and other farm products. Our goal is to support local farmers and provide healthy options for our customers.</p>
+         <a href="shop.php" class="btn">Our Shop</a>
       </div>
 
    </div>
@@ -55,13 +55,13 @@ if(!isset($user_id)){
 
 <section class="reviews">
 
-   <h1 class="title">clients reivews</h1>
+   <h1 class="title">Client Reviews</h1>
 
    <div class="box-container">
 
       <div class="box">
          <img src="images/pic-1.png" alt="">
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et voluptates sit earum, neque non cupiditate amet deserunt aperiam quas ex.</p>
+         <p>"The quality of the produce is outstanding, and the service is excellent. I highly recommend Farmers Fairway!"</p>
          <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -69,12 +69,12 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>John Doe</h3>
       </div>
 
       <div class="box">
          <img src="images/pic-2.png" alt="">
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et voluptates sit earum, neque non cupiditate amet deserunt aperiam quas ex.</p>
+         <p>"I love the variety of products available. It's great to know I'm supporting local farmers with every purchase."</p>
          <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -82,12 +82,12 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Jane Smith</h3>
       </div>
 
       <div class="box">
          <img src="images/pic-3.png" alt="">
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et voluptates sit earum, neque non cupiditate amet deserunt aperiam quas ex.</p>
+         <p>"Farmers Fairway has made it so easy to get fresh produce delivered to my door. The quality is always top-notch."</p>
          <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -95,12 +95,12 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Emily Johnson</h3>
       </div>
 
       <div class="box">
          <img src="images/pic-4.png" alt="">
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et voluptates sit earum, neque non cupiditate amet deserunt aperiam quas ex.</p>
+         <p>"The customer service is fantastic, and the produce is always fresh. I can't recommend them enough!"</p>
          <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -108,12 +108,12 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Michael Brown</h3>
       </div>
 
       <div class="box">
          <img src="images/pic-5.png" alt="">
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et voluptates sit earum, neque non cupiditate amet deserunt aperiam quas ex.</p>
+         <p>"A wonderful service that brings the best of local farming to my home. The quality and selection are unmatched."</p>
          <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -121,12 +121,12 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Sarah Wilson</h3>
       </div>
 
       <div class="box">
          <img src="images/pic-6.png" alt="">
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et voluptates sit earum, neque non cupiditate amet deserunt aperiam quas ex.</p>
+         <p>"I appreciate the ease of ordering and the freshness of the products. Farmers Fairway is my go-to for groceries."</p>
          <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -134,20 +134,12 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>David Lee</h3>
       </div>
 
    </div>
 
 </section>
-
-
-
-
-
-
-
-
 
 <?php include 'footer.php'; ?>
 
