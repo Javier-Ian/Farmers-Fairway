@@ -45,9 +45,9 @@ if(isset($_POST['add_product'])){
          $message[] = 'image size is too large!';
       }else{
          if(move_uploaded_file($image_tmp_name, $image_folder)){
-            $insert_products = $conn->prepare("INSERT INTO `products`(name, category, details, price, image) VALUES(?,?,?,?,?)");
-            $insert_products->execute([$name, $category, $details, $price, $image]);
-            $message[] = 'new product added!';
+            $insert_product = $conn->prepare("INSERT INTO `products` (name, category, details, price, image, admin_id) VALUES (?, ?, ?, ?, ?, ?)");
+            $insert_product->execute([$name, $category, $details, $price, $image, $admin_id]);
+            $message[] = 'Product added successfully!';
          } else {
             $message[] = 'Failed to upload image. Please check directory permissions.';
          }

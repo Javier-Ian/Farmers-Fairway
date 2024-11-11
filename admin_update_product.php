@@ -29,8 +29,8 @@ if(isset($_POST['update_product'])){
    $image_folder = 'uploaded_img/'.$image;
    $old_image = $_POST['old_image'];
 
-   $update_product = $conn->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ? WHERE id = ?");
-   $update_product->execute([$name, $category, $details, $price, $pid]);
+   $update_product = $conn->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ? WHERE id = ? AND admin_id = ?");
+   $update_product->execute([$name, $category, $details, $price, $pid, $admin_id]);
 
    $message[] = 'product updated successfully!';
 
@@ -79,8 +79,8 @@ if(isset($_POST['update_product'])){
 
    <?php
       $update_id = $_GET['update'];
-      $select_products = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
-      $select_products->execute([$update_id]);
+      $select_products = $conn->prepare("SELECT * FROM `products` WHERE id = ? AND admin_id = ?");
+      $select_products->execute([$update_id, $admin_id]);
       if($select_products->rowCount() > 0){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
    ?>

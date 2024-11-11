@@ -253,16 +253,11 @@
    color:var(--green);
 }
 
-
-
-
-
-
-
-
-
-
-
+.admin-name {
+    font-size: 1.2em; /* Adjust the size as needed */
+    font-weight: bold; /* Optional: make the text bold */
+    margin-top: 5px; /* Optional: add some spacing */
+}
 
 @media (max-width:768px){
 
