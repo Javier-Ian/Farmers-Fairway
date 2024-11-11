@@ -118,30 +118,30 @@ if(isset($_POST['add_to_cart'])){
 
       <div class="box">
          <img src="images/cat-1.png" alt="">
-         <h3>fruits</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=fruits" class="btn">Fruits</a>
+         <h3>Fruits</h3>
+         <p>Fresh, seasonal fruits sourced directly from local orchards, bringing nature's sweetness to your table.</p>
+         <a href="category.php?category=fruits" class="btn">fruits</a>
       </div>
 
       <div class="box">
          <img src="images/cat-2.png" alt="">
-         <h3>meat</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=meat" class="btn">Meat</a>
+         <h3>Corn</h3>
+         <p>Sweet, golden corn harvested at peak ripeness from our partner farms, delivering farm-fresh flavor to your meals.</p>
+         <a href="category.php?category=meat" class="btn">corn</a>
       </div>
 
       <div class="box">
          <img src="images/cat-3.png" alt="">
          <h3>vegetables</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=vegitables" class="btn">Vegetables</a>
+         <p>Garden-fresh vegetables harvested daily from local farms, ensuring the highest quality and nutritional value for your family.</p>
+         <a href="category.php?category=vegitables" class="btn">vegetables</a>
       </div>
 
       <div class="box">
          <img src="images/cat-4.png" alt="">
-         <h3>fish</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=fish" class="btn">Fish</a>
+         <h3>Rice</h3>
+         <p>Premium quality rice sourced from local paddies, carefully selected to bring authentic farm-fresh grains to your kitchen.</p>
+         <a href="category.php?category=fish" class="btn">fish</a>
       </div>
 
    </div>
